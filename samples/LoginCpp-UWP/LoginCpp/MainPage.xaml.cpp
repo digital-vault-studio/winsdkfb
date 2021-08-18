@@ -54,10 +54,8 @@ using namespace Windows::Globalization::DateTimeFormatting;
 
 const wchar_t* requested_permissions[] = 
 {
-    L"public_profile",
+    L"public_profile", // Whis works for both kind of API's
     L"user_friends",
-    L"user_likes",
-    L"user_location"
 };
 
 MainPage::MainPage()
@@ -105,7 +103,7 @@ BOOL MainPage::DidGetAllRequestedPermissions(
     BOOL success = FALSE;
     FBAccessTokenData^ data = FBSession::ActiveSession->AccessTokenData;
 
-    if (data)
+    if (data && data->DeclinedPermissions)
     {
         success = !data->DeclinedPermissions->Values->Size;
     }
