@@ -52,9 +52,18 @@ using namespace Windows::Globalization::DateTimeFormatting;
 #define FBStoreAppIDName L"FBWindowsAppId"
 #define PermissionGranted L"granted"
 
+/// <summary>
+/// This array is used to ask for this specific permissions
+/// <c>public_profile</c> permission works for graph and gaming graph api, but
+/// Facebook suggest the use of <c>gaming_profile</c> if you call to gaming graph
+/// specifically.
+/// <c>user_friends</c> retrive friends and require an special request to Facebook team
+/// if you enable gaming graph
+/// </summary>
 const wchar_t* requested_permissions[] = 
 {
-    L"public_profile", // Whis works for both kind of API's
+    L"public_profile",
+    L"email",
     L"user_friends",
 };
 
