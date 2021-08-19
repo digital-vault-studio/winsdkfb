@@ -27,11 +27,13 @@ using namespace Windows::Foundation::Collections;
 using namespace winsdkfb;
 
 
-GraphUriBuilder::GraphUriBuilder(String^ path)
+GraphUriBuilder::GraphUriBuilder(String^ path, String^ graphDomain)
     :
     _queryParams { ref new PropertySet() }
 {
     Uri^ testUri;
+    // New api returns partial URL, and needs to be builded after this block
+#if !FACEBOOK_API_8_OR_ABOVE
     bool buildDomain = false;
     try
     {
@@ -41,10 +43,17 @@ GraphUriBuilder::GraphUriBuilder(String^ path)
     {
         buildDomain = true;
     }
+#else
+    bool buildDomain = true;
+#endif
 
     if (buildDomain)
     {
         String^ domain = L"https://graph.facebook.com/";
+        if (graphDomain == L"gaming")
+        {
+            domain = L"https://graph.fb.gg/";
+        }
         testUri = ref new Uri(domain + path);
     }
     _host = testUri->Host;

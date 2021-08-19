@@ -468,7 +468,7 @@ Object^ ObjectSerializeHelper::ReadObject(DataReader^ reader)
 	case StreamTypes::BooleanType:
 		return reader->ReadBoolean();
 	case StreamTypes::Char16Type:
-		return (char16_t) reader->ReadUInt16();
+		return (wchar_t) reader->ReadUInt16();
 	case StreamTypes::GuidType:
 		return reader->ReadGuid();
 	case StreamTypes::StringType:
