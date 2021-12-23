@@ -28,9 +28,16 @@ public class Login : MonoBehaviour
         logger = LogLoginResult;
     }
 
+    /// <summary>
+    /// This function is called from Unity UI, all is running on main thread, to execute
+    /// XAML code, you should invoke it on XAML UI Thread.
+    /// </summary>
     public void FacebookLogin()
     {
 #if ENABLE_WINMD_SUPPORT
+        // Here we invoke XAML code from UI XAML Thread.
+        // If you have the following issue: he application called an interface that was marshalled for a different thread
+        // means that your running this code from other thread, change 'InvokeOnUIThread' to 'InvokeOnAppThread'.
         UnityEngine.WSA.Application.InvokeOnUIThread(async () =>
         {
             List<string> permissionList = new List<string>
@@ -69,8 +76,15 @@ public class Login : MonoBehaviour
 #endif
     }
 
+    /// <summary>
+    /// A delegate to receive the result
+    /// </summary>
+    /// <param name="result">Facebook login result text, can be our token or an error string</param>
+    /// <param name="buttonText"></param>
     public void LogLoginResult(string result, string buttonText)
     {
+        // All Unity calls should be invoked from App Thread, we invoked this delegate
+        // from InvokeOnUIThread, so we need execute the text assignation in App Thread.
 #if UNITY_WSA
         UnityEngine.WSA.Application.InvokeOnAppThread(() =>
         {
