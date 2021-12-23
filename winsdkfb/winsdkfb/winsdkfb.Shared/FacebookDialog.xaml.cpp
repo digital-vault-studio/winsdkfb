@@ -265,7 +265,10 @@ String^ FacebookDialog::GetFBServerUrl(
     }
     else
     {
-        server = FACEBOOK_DESKTOP_SERVER_NAME;
+        // As IE engine is used to render websites and Facebook deprecate that in desktop version
+        // we'll use mobile server to login
+        //server = FACEBOOK_DESKTOP_SERVER_NAME;
+        server = FACEBOOK_MOBILE_SERVER_NAME;
     }
     return server;
 }

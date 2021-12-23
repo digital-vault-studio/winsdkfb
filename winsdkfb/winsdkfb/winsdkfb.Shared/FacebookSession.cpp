@@ -103,7 +103,10 @@ FBSession::FBSession() :
 #if WINAPI_FAMILY==WINAPI_FAMILY_PHONE_APP
     _webViewRedirectDomain = FACEBOOK_MOBILE_SERVER_NAME;
 #else
-    _webViewRedirectDomain = FACEBOOK_DESKTOP_SERVER_NAME;
+    // As IE engine is used to render websites and Facebook deprecate that in desktop version
+    // we'll use mobile server to login
+    // _webViewRedirectDomain = FACEBOOK_DESKTOP_SERVER_NAME;
+    _webViewRedirectDomain = FACEBOOK_MOBILE_SERVER_NAME;
 #endif
     _webViewRedirectPath = FACEBOOK_LOGIN_SUCCESS_PATH;
 }
@@ -720,8 +723,8 @@ Uri^ FBSession::BuildLoginUri(
     {
         apiVersion = L"v" + APIMajorVersion.ToString() + L"." + APIMinorVersion.ToString() + L"/";
     }
-    String^ uriString = L"https://" +
-        L"www.facebook.com/" + apiVersion + L"dialog/oauth?client_id=" + s->FBAppId;
+
+    String^ uriString = FACEBOOK_MOBILE_SERVER_NAME +L"/" + apiVersion + L"dialog/oauth?client_id=" + s->FBAppId;
 
     // Use some reasonable default login parameters
     String^ scope = DefaultScope;
