@@ -63,8 +63,7 @@ using namespace Windows::Globalization::DateTimeFormatting;
 const wchar_t* requested_permissions[] = 
 {
     L"public_profile",
-    L"email",
-    L"user_friends",
+    L"email"
 };
 
 MainPage::MainPage()
