@@ -6,26 +6,37 @@ using UnityEngine.UI;
 #if ENABLE_WINMD_SUPPORT
 using winsdkfb;
 using winsdkfb.Graph;
+using Windows.Security.Authentication.Web;
 #endif
 
-public delegate void LogResult(string result, string buttonText);
+public delegate void LogResult(string result, string buttonText = "Login");
 
 [RequireComponent(typeof(Button))]
 public class Login : MonoBehaviour
 {
     [SerializeField]
     private Text facebookAccessToken;
+    [SerializeField]
+    private Text sidLabel;
 
     private Button loginButton;
     private Text loginButtonLabel;
 
-    public static LogResult logger;
+    public static LogResult loggerXAML;
+    public static LogResult loggerUnity;
 
     private void Awake()
     {
         loginButton = GetComponent<Button>();
         loginButtonLabel = loginButton.GetComponentInChildren<Text>();
-        logger = LogLoginResult;
+        loggerXAML = LogLoginResultXAML;
+        loggerUnity = LogLoginResultUnity;
+    }
+
+    private void Start()
+    {
+        if (sidLabel != null)
+            sidLabel.text = SID;
     }
 
     /// <summary>
@@ -51,7 +62,7 @@ public class Login : MonoBehaviour
             if(sess.LoggedIn)
             {
                 await sess.LogoutAsync();
-                Login.logger.Invoke("", "Login");
+                Login.loggerXAML.Invoke("", "Login");
             }
             else
             {
@@ -64,12 +75,12 @@ public class Login : MonoBehaviour
                 if (result.Succeeded)
                 {
                     // Login success                
-                    Login.logger.Invoke(sess.AccessTokenData.AccessToken, "Logout");
+                    Login.loggerXAML.Invoke(sess.AccessTokenData.AccessToken, "Logout");
                 }
                 else
                 {
                     // Login failed
-                    Login.logger.Invoke(result.ErrorInfo.Code + " " + result.ErrorInfo.ErrorUserMessage, "Login");
+                    Login.loggerXAML.Invoke(result.ErrorInfo.Code + " " + result.ErrorInfo.ErrorUserMessage, "Login");
                 }
             }
         }, false);
@@ -83,7 +94,7 @@ public class Login : MonoBehaviour
     /// </summary>
     /// <param name="result">Facebook login result text, can be our token or an error string</param>
     /// <param name="buttonText"></param>
-    public void LogLoginResult(string result, string buttonText)
+    public void LogLoginResultXAML(string result, string buttonText)
     {
         // All Unity calls should be invoked from App Thread, we invoked this delegate
         // from InvokeOnUIThread, so we need execute the text assignation in App Thread.
@@ -94,5 +105,24 @@ public class Login : MonoBehaviour
             loginButtonLabel.text = buttonText;
         }, false);
 #endif
+    }
+
+    public void LogLoginResultUnity(string result, string buttonText)
+    {
+        facebookAccessToken.text = result;
+        loginButtonLabel.text = buttonText;
+    }
+
+    private string SID
+    {
+        get
+        {
+#if ENABLE_WINMD_SUPPORT
+            string SID = WebAuthenticationBroker.GetCurrentApplicationCallbackUri().ToString();
+            return SID;
+#else
+            return "ms-app://SID";
+#endif
+        }
     }
 }
