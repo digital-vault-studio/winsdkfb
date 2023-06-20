@@ -5,9 +5,10 @@
     xmlns:local="using:winsdkfb"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignHeight="1200"
+    d:DesignWidth="1200">
 
     <UserControl.Resources>
         <ResourceDictionary>
@@ -18,7 +19,7 @@
     </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot" Background="#7F000000">
-        <Grid Margin="20,40" MaxWidth="650" MaxHeight="600">
+        <Grid Margin="20,40" MaxWidth="1200" MaxHeight="1200">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*"/>
@@ -28,7 +29,7 @@
                     MinWidth="0" MinHeight="0" Width="30" Height="30" 
                     Style="{StaticResource CircleWithCrossButtonKey}" Click="CloseDialogButton_OnClick" FontFamily="Segoe UI Symbol" 
                     Margin="0,0,0,5" Foreground="White" />
-            <WebView x:Name="dialogWebBrowser" Grid.Row="1" />
+            <controls:WebView2 x:Name="dialogWebBrowser" Grid.Row="1" Source="https://www.facebook.com" />
         </Grid>
     </Grid>
 </UserControl>

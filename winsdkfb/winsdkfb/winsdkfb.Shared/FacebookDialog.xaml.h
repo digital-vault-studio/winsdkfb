@@ -75,8 +75,8 @@ namespace winsdkfb
     private:
         Windows::Foundation::IAsyncOperation<winsdkfb::FBResult^>^ ShowDialog(
             DialogUriBuilder^ uriBuilder,
-            Windows::Foundation::TypedEventHandler<Windows::UI::Xaml::Controls::WebView^, Windows::UI::Xaml::Controls::WebViewNavigationStartingEventArgs^>^ EventHandlerStarting,
-            Windows::Foundation::TypedEventHandler<Windows::UI::Xaml::Controls::WebView^, Windows::UI::Xaml::Controls::WebViewNavigationCompletedEventArgs^>^ EventHandlerCompleted,
+            Windows::Foundation::TypedEventHandler<Microsoft::UI::Xaml::Controls::WebView2^, Microsoft::Web::WebView2::Core::CoreWebView2NavigationStartingEventArgs^>^ EventHandlerStarting,
+            Windows::Foundation::TypedEventHandler<Microsoft::UI::Xaml::Controls::WebView2^, Microsoft::Web::WebView2::Core::CoreWebView2NavigationCompletedEventArgs^>^ EventHandlerCompleted,
             Windows::Foundation::Collections::PropertySet^ Parameters
             );
 
@@ -104,28 +104,28 @@ namespace winsdkfb
             );
 
         void dialogWebView_LoginNavStarting(
-            Windows::UI::Xaml::Controls::WebView^ sender,
-            Windows::UI::Xaml::Controls::WebViewNavigationStartingEventArgs^ e
+            Microsoft::UI::Xaml::Controls::WebView2^ sender,
+            Microsoft::Web::WebView2::Core::CoreWebView2NavigationStartingEventArgs^ e
             );
 
         void dialogWebView_FeedNavStarting(
-            Windows::UI::Xaml::Controls::WebView^ sender,
-            Windows::UI::Xaml::Controls::WebViewNavigationStartingEventArgs^ e
+            Microsoft::UI::Xaml::Controls::WebView2^ sender,
+            Microsoft::Web::WebView2::Core::CoreWebView2NavigationStartingEventArgs^ e
             );
 
         void dialogWebView_RequestNavStarting(
-            Windows::UI::Xaml::Controls::WebView^ sender,
-            Windows::UI::Xaml::Controls::WebViewNavigationStartingEventArgs^ e
+            Microsoft::UI::Xaml::Controls::WebView2^ sender,
+            Microsoft::Web::WebView2::Core::CoreWebView2NavigationStartingEventArgs^ e
             );
 
         void dialogWebView_SendNavStarting(
-            Windows::UI::Xaml::Controls::WebView^ sender,
-            Windows::UI::Xaml::Controls::WebViewNavigationStartingEventArgs^ e
+            Microsoft::UI::Xaml::Controls::WebView2^ sender,
+            Microsoft::Web::WebView2::Core::CoreWebView2NavigationStartingEventArgs^ e
             );
 
         void dialogWebView_NavCompleted(
-            Windows::UI::Xaml::Controls::WebView^ sender,
-            Windows::UI::Xaml::Controls::WebViewNavigationCompletedEventArgs^ e
+            Microsoft::UI::Xaml::Controls::WebView2^ sender,
+            Microsoft::Web::WebView2::Core::CoreWebView2NavigationCompletedEventArgs^ e
         );
 
         void CloseDialogButton_OnClick(

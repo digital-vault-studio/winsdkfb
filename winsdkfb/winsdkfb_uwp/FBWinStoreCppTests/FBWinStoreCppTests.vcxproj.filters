@@ -52,5 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\winsdkfb_testing_key.pfx" />
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
