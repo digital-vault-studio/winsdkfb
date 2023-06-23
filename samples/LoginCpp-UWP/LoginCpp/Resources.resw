@@ -118,15 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FBApplicationId" xml:space="preserve">
-    <value>1025365401567256</value>
+    <value>199062074171816</value>
     <comment>Facebook Application ID</comment>
   </data>
   <data name="FBWindowsAppId" xml:space="preserve">
-    <value>s-1-15-2-3089487911-215249050-3399914704-2991134715-266043697-3786854407-3873117276</value>
+    <value>s-1-15-2-2555675425-4268936723-3102382073-744489069-1250580848-11316291-2691514648</value>
     <comment>Facebook "Windows Store ID" - the SID for the app (from a call to WebAuthenticationBroker::GetCurrentApplicationCallbackUri</comment>
   </data>
   <data name="FBWinPhoneAppId" xml:space="preserve">
-    <value>f9936651-80a3-478a-9170-cd1629c172ab</value>
+    <value>e8982c2e-8d17-4567-8a2b-853437604044</value>
     <comment>Facebook "Windows Phone Store ID" - not really a Windows Phone Store Id, but used by Facebook app as protocol to return access token to.</comment>
   </data>
 </root>

@@ -106,7 +106,7 @@ FBSession::FBSession() :
     // As IE engine is used to render websites and Facebook deprecate that in desktop version
     // we'll use mobile server to login
     // _webViewRedirectDomain = FACEBOOK_DESKTOP_SERVER_NAME;
-    _webViewRedirectDomain = FACEBOOK_MOBILE_SERVER_NAME;
+    _webViewRedirectDomain = FACEBOOK_DESKTOP_SERVER_NAME;
 #endif
     _webViewRedirectPath = FACEBOOK_LOGIN_SUCCESS_PATH;
 }

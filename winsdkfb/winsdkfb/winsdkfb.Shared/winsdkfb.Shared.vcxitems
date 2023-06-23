@@ -145,9 +145,4 @@
     <None Include="$(MSBuildThisFileDirectory)FBProfilePictureData.xml" />
     <None Include="$(MSBuildThisFileDirectory)FBPage.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="$(MSBuildThisFileDirectory)Images\fb_blank_profile_portrait.png">
-      <ExcludedFromBuild>false</ExcludedFromBuild>
-    </Image>
-  </ItemGroup>
 </Project>

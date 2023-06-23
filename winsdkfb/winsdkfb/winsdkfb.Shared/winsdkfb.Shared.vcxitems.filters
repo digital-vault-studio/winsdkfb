@@ -197,9 +197,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="$(MSBuildThisFileDirectory)Images\fb_blank_profile_portrait.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)FBAppRequest.cpp.tt">
       <Filter>Object Templates</Filter>
     </None>
